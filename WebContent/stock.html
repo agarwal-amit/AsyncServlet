@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-rc1/jquery.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	console.log("starting");
+	callStock();
+});
+
+function callStock() {
+	console.log("starting callStock");
+	$.ajax({
+		url: "http://localhost:8080/DemoServlet/StockServlet",
+		success: function(result) {
+			console.log("Response:" + result);
+			 $("#stockprice").html(result);
+			callStock();
+	   	}
+	});
+}
+</script>
+
+
+</head>
+<body>
+	<div id="stockprice"></div>
+</body>
+</html>
